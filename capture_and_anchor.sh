@@ -1,5 +1,7 @@
 #!/bin/bash
 # capture.sh - Capture live network packets as evidence
+# deploy
+npx hardhat run scripts/deploy.js --network localhost
 
 INTERFACE="enp0s3"
 DURATION=10
@@ -16,6 +18,6 @@ echo "Capture complete. Saved to $OUTPUT"
 COUNT=$(tshark -r "$OUTPUT" | wc -l)
 echo "Total packets captured: $COUNT"
 
-npx hardhat run scripts/deploy.js --network localhost
 
+# anchor
 npx hardhat run scripts/anchor.js --network localhost
