@@ -58,7 +58,6 @@ external APIs, no cost of any kind.
 │   ├── evidence.pcap          # Captured traffic (not committed — see .gitignore)
 │   └── records.json           # Local detailed record of all packet hashes
 ├── merkle.js                  # Merkle tree construction helper
-├── capture.sh                 # Captures packets via tshark
 ├── capture_and_anchor.sh      # Capture + deploy + anchor in one step
 ├── tamper.sh                  # Simulates evidence tampering (deletes packets)
 ├── run.sh                     # Convenience wrapper for deploy/anchor/verify
@@ -135,11 +134,10 @@ which the next scripts read automatically.
 
 **3. Capture network traffic:**
 ```bash
-tshark -i <interface> -c 60 -a duration:30 -f "tcp port 443 or udp port 53" -w evidence/evidence.pcap
+tshark -i <interface> -a duration:30 -f "tcp port 443 or udp port 53" -w evidence/evidence.pcap
 ```
 Replace `<interface>` with your network interface name (find it with
-`tshark -D`). This captures up to 60 packets (or stops after 30 seconds,
-whichever comes first) and saves them to `evidence/evidence.pcap`.
+`tshark -D`). This captures packets and stops after 30 seconds and saves them to `evidence/evidence.pcap`.
 
 **4. Hash the captured packets and anchor the Merkle root on-chain:**
 ```bash
@@ -178,7 +176,7 @@ during development and demos:
 |---|---|
 | `./capture_and_anchor.sh` | Steps 2-4 combined, run back-to-back |
 | `./tamper.sh` | Step 5, prompts for which packet ranges to keep |
-| `./verify.sh` | Step 6 |
+| `./verify.sh` | Step 6, verify packets |
 
 These are optional — the manual commands above work identically and are
 useful for understanding exactly what each step does.
