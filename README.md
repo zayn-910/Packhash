@@ -47,7 +47,7 @@ external APIs, no cost of any kind.
 
 ## Project structure
 
-\```
+```
 ├── contracts/
 │   └── PacketRegistry.sol     # Stores the Merkle root on-chain
 ├── scripts/
@@ -63,7 +63,7 @@ external APIs, no cost of any kind.
 ├── tamper.sh                  # Simulates evidence tampering (deletes packets)
 ├── run.sh                     # Convenience wrapper for deploy/anchor/verify
 └── hardhat.config.js
-\```
+```
 
 ## Requirements
 
